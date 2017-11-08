@@ -1,9 +1,13 @@
 
 .todoWrapper {
+  margin: 5px;
   padding: 5px;
   display: flex;
-  align-items: center;
   height: auto;
+  border: 2px solid deepskyblue;
+  overflow: hidden;
+  min-width: 50px;
+  max-width: 100%;
 }
 
 .removeTodo {

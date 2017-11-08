@@ -40,18 +40,17 @@ export class TodoService {
 
   public removeTodo(id: number): void {
     this.todos = this.todos.filter((todo) => todo.id !== id);
-    this.nextId--;
     this.saveTodos();
   }
 
   public changeTodo(id: number, text: string): void {
-    this.todos[id].text = text;
-    this.todos[id].done = false;
+    this.todos.filter((todo) => todo.id === id)[0].text = text;
+    this.todos.filter((todo) => todo.id === id)[0].done = false;
     this.saveTodos();
   }
 
   public changeDone(id: number, done: boolean): void {
-    this.todos[id].done = done;
+    this.todos.filter((todo) => todo.id === id)[0].done = done;
     this.saveTodos();
   }
 }
