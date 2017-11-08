@@ -1,0 +1,20 @@
+<div class="todoWrapper">
+  <button mat-raised-button color="warn" class="removeTodo" (click)="removeTodo()">Remove</button>
+
+  <div class="todoText" *ngIf="!todo.edit">
+    {{todo.text}}
+  </div>
+
+  <div class="todoEditWrapper" *ngIf="todo.edit">
+      <mat-form-field>
+         <input matInput placeholder="{{todo.text}}" [(ngModel)]="todoText" value={{todoText}} (keyup.enter)="changeTodo(todoText)"/>
+      </mat-form-field>
+      <button mat-button class="btn btn-primary" (click)="changeTodo(todoText)">Save Changes</button>
+  </div>
+
+  <button mat-raised-button (click)="doToDo()">
+    <span *ngIf="todo.done">Done</span>
+    <span *ngIf="!todo.done">Not done</span>
+  </button>
+  <button mat-raised-button class="editTodo" (click)="editTodo()">Edit</button>
+</div>

@@ -1,0 +1,6 @@
+<div class="todo-input-wrapper">
+  <mat-form-field>
+    <input matInput placeholder="Input your ToDo" [(ngModel)]="todoText" value={{todoText}} (keyup.enter)="addTodo()"/>
+  </mat-form-field>
+    <button mat-button class="btn btn-primary" (click)="addTodo()">Submit</button>
+</div>

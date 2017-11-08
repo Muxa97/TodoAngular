@@ -1,0 +1,33 @@
+
+.todoWrapper {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  height: auto;
+}
+
+.removeTodo {
+  width: auto;
+}
+
+.todoText {
+  padding-left: 10px;
+  padding-top: 10px;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 1.3em;
+  overflow: hidden;
+}
+
+.todoEditWrapper {
+  padding-left: 10px;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.doneCheckbox {
+  margin: auto;
+  width: auto;
+}
