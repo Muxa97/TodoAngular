@@ -7,11 +7,14 @@
   border: 2px solid deepskyblue;
   overflow: hidden;
   min-width: 50px;
-  max-width: 100%;
+  width: auto;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .removeTodo {
   width: auto;
+  order: 1;
 }
 
 .todoText {

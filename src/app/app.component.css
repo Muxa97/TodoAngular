@@ -7,7 +7,7 @@
   width: auto;
   border: 5px solid rgba(73, 204, 249, 1.0);
   padding: 20px;
-  min-height: 400px;
+  height: auto;
   max-height: 700px;
 }
 
