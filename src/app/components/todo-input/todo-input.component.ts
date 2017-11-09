@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
-import {ENTER} from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'app-todo-input',
@@ -8,19 +7,21 @@ import {ENTER} from "@angular/cdk/keycodes";
   styleUrls: ['./todo-input.component.css'],
   /*encapsulation: ViewEncapsulation.None*/
 })
-export class TodoInputComponent implements OnInit {
+export class TodoInputComponent {
 
   public todoText: string;
+  public todosLenght = this.todoService.todos.length;
 
   constructor(private todoService: TodoService) {
     this.todoText = '';
   }
 
-  ngOnInit() {
-  }
-
   public addTodo(): void {
     this.todoService.addTodo(this.todoText);
     this.todoText = '';
+  }
+
+  public removeAll(): void {
+    this.todoService.removeAll();
   }
 }

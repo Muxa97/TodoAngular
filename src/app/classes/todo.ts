@@ -3,6 +3,7 @@ export class Todo {
   text: string;
   done: boolean;
   edit: boolean;
+  todoTextStyle: string;
 
   constructor(id: number, text: string) {
     this.id = id;

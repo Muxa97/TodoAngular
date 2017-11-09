@@ -1,7 +1,7 @@
 <div class="todoWrapper">
   <button mat-raised-button color="warn" class="removeTodo" (click)="removeTodo()">Remove</button>
 
-  <div class="todoText" *ngIf="!todo.edit">
+  <div [className]="todo.todoTextStyle" *ngIf="!todo.edit">
     {{todo.text}}
   </div>
 
