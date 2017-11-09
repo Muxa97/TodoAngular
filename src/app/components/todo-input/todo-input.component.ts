@@ -19,9 +19,11 @@ export class TodoInputComponent {
   public addTodo(): void {
     this.todoService.addTodo(this.todoText);
     this.todoText = '';
+    this.todosLenght++;
   }
 
   public removeAll(): void {
     this.todoService.removeAll();
+    this.todosLenght = 0;
   }
 }
