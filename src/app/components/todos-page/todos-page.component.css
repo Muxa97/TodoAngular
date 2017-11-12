@@ -1,0 +1,19 @@
+
+.todosPage-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todosPage-wrapper button {
+  width: 10%;
+  height: auto;
+  font-size: 1.7em;
+}
+
+.todos {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  max-width: 80%;
+}

@@ -2,10 +2,6 @@
     <div class="todo-wrapper">
       <app-header></app-header>
       <app-todo-input></app-todo-input>
-      <div class="todos">
-        <div *ngFor="let todo of todoService.getTodos()">
-          <app-todo-item [todo]="todo"></app-todo-item>
-        </div>
-      </div>
+      <app-todos-page></app-todos-page>
     </div>
 </div>

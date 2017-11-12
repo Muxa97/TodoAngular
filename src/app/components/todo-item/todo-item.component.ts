@@ -1,17 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Todo } from '../../classes/todo';
+import { TodoModel } from '../../models/todo.model';
 import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',
-  styleUrls: ['./todo-item.component.css'],
-  /*encapsulation: ViewEncapsulation.None*/
+  styleUrls: ['./todo-item.component.css']
 })
 export class TodoItemComponent implements OnInit {
 
   @Input()
-  public todo: Todo;
+  public todo: TodoModel;
 
   constructor(private todoService: TodoService) { }
 
@@ -32,6 +31,7 @@ export class TodoItemComponent implements OnInit {
     if (newText) {
       this.todoService.changeTodo(this.todo.id, newText);
     }
+
   }
 
   public doToDo(): void {

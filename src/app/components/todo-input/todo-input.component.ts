@@ -10,20 +10,17 @@ import { TodoService } from '../../services/todo.service';
 export class TodoInputComponent {
 
   public todoText: string;
-  public todosLenght = this.todoService.todos.length;
 
-  constructor(private todoService: TodoService) {
+  constructor(public todoService: TodoService) {
     this.todoText = '';
   }
 
   public addTodo(): void {
     this.todoService.addTodo(this.todoText);
     this.todoText = '';
-    this.todosLenght++;
   }
 
   public removeAll(): void {
     this.todoService.removeAll();
-    this.todosLenght = 0;
   }
 }

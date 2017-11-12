@@ -1,8 +1,14 @@
 <div class="todoWrapper">
-  <button mat-raised-button color="warn" class="removeTodo" (click)="removeTodo()">Remove</button>
 
-  <div [className]="todo.todoTextStyle" *ngIf="!todo.edit">
-    {{todo.text}}
+  <div *ngIf="!todo.edit">
+    <div [className]="todo.todoTextStyle">{{todo.text}}</div>
+
+    <button mat-raised-button color="warn" class="removeTodo" (click)="removeTodo()">Remove</button>
+    <button mat-raised-button (click)="doToDo()">
+      <span *ngIf="todo.done">Done</span>
+      <span *ngIf="!todo.done">Not done</span>
+    </button>
+    <button mat-raised-button class="editTodo" (click)="editTodo()">Edit</button>
   </div>
 
   <div class="todoEditWrapper" *ngIf="todo.edit">
@@ -11,10 +17,4 @@
       </mat-form-field>
       <button mat-button class="btn btn-primary" (click)="changeTodo(todoText)">Save Changes</button>
   </div>
-
-  <button mat-raised-button (click)="doToDo()">
-    <span *ngIf="todo.done">Done</span>
-    <span *ngIf="!todo.done">Not done</span>
-  </button>
-  <button mat-raised-button class="editTodo" (click)="editTodo()">Edit</button>
 </div>

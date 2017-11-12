@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Todo } from '../classes/todo';
+import { TodoModel } from '../models/todo.model';
 
 @Injectable()
 export class TodoService {
 
-  public todos: Todo[];
+  public todos: TodoModel[];
   public nextId: number;
-  public maxTodoCount: number;
+  public totalPages: number;
 
   constructor() {
-
+    const nextId = localStorage.getItem('nextId');
     const todosStr = localStorage.getItem('todos');
 
-
+    this.nextId = parseInt(nextId, 10);
     this.todos = JSON.parse(todosStr);
     if (!this.todos) {
       this.todos = [];
     }
 
-    this.nextId = this.todos.length;
+    this.totalPages = Math.floor(this.todos.length / 5) + 1;
   }
 
   public saveTodos(): void {
+    localStorage.setItem('nextId', this.nextId.toString(10));
     const todosStr = JSON.stringify(this.todos);
     localStorage.setItem('todos', todosStr);
   }
@@ -30,20 +31,27 @@ export class TodoService {
     if (text === '') {
       text = 'Do nothing';
     }
-    const todo = new Todo(this.nextId, text);
+    const todo = new TodoModel(this.nextId, text);
     todo.todoTextStyle = 'notDone';
     this.todos.push(todo);
-    this.saveTodos();
     this.nextId++;
+    this.saveTodos();
+    this.totalPages = Math.floor(this.todos.length / 5) + 1;
   }
 
-  public getTodos(): Todo[] {
-    return this.todos;
+  public getTodos(currentPage: number): TodoModel[] {
+    let todosPage: TodoModel[];
+    todosPage = [];
+    for (let i = 0; i < 5 && (currentPage - 1) * 5 + i < this.todos.length; i++) {
+      todosPage.push(this.todos[(currentPage - 1) * 5 + i]);
+    }
+    return todosPage;
   }
 
   public removeTodo(id: number): void {
     this.todos = this.todos.filter((todo) => todo.id !== id);
     this.saveTodos();
+    this.totalPages = Math.floor(this.todos.length / 5) + 1;
   }
 
   public changeTodo(id: number, text: string): void {
@@ -61,6 +69,8 @@ export class TodoService {
 
   public removeAll(): void {
     this.todos = [];
+    this.nextId = 0;
     this.saveTodos();
+    this.totalPages = Math.floor(this.todos.length / 5) + 1;
   }
 }
