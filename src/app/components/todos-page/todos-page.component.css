@@ -2,7 +2,8 @@
 .todosPage-wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
+  height: auto;
 }
 
 .todosPage-wrapper button {

@@ -1,13 +1,15 @@
 
 <div class="pageNumber">{{currentPage}}/{{todoService.totalPages}}</div>
 <div class="todosPage-wrapper">
-  <button mat-button (click)="prevPage()">←</button>
-
+  <div>
+    <button mat-button (click)="prevPage()">←</button>
+  </div>
   <div class="todos">
     <div *ngFor="let todo of todoService.getTodos(currentPage)">
       <app-todo-item [todo]="todo"></app-todo-item>
     </div>
   </div>
-
-  <button mat-button (click)="nextPage()">→</button>
+  <div>
+    <button mat-button (click)="nextPage()">→</button>
+  </div>
 </div>
