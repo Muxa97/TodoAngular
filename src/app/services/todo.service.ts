@@ -9,7 +9,10 @@ export class TodoService {
   public totalPages: number;
 
   constructor() {
-    const nextId = localStorage.getItem('nextId');
+    let nextId = localStorage.getItem('nextId') || '0';
+    if (nextId === 'NaN') {
+      nextId = '0';
+    }
     const todosStr = localStorage.getItem('todos');
 
     this.nextId = parseInt(nextId, 10);
@@ -32,7 +35,6 @@ export class TodoService {
       text = 'Do nothing';
     }
     const todo = new TodoModel(this.nextId, text);
-    todo.todoTextStyle = 'notDone';
     this.todos.push(todo);
     this.nextId++;
     this.saveTodos();
@@ -57,13 +59,11 @@ export class TodoService {
   public changeTodo(id: number, text: string): void {
     this.todos.filter((todo) => todo.id === id)[0].text = text;
     this.todos.filter((todo) => todo.id === id)[0].done = false;
-    this.todos.filter((todo) => todo.id === id)[0].todoTextStyle = 'notDone';
     this.saveTodos();
   }
 
   public changeDone(id: number, done: boolean): void {
     this.todos.filter((todo) => todo.id === id)[0].done = done;
-    this.todos.filter((todo) => todo.id === id)[0].todoTextStyle = done ? 'done' : 'notDone';
     this.saveTodos();
   }
 

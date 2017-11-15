@@ -7,10 +7,11 @@ import { TodoService } from '../../services/todo.service';
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.css']
 })
-export class TodoItemComponent{
+export class TodoItemComponent {
 
   @Input()
   public todo: TodoModel;
+  public todoTextStyle = 'notDone';
 
   constructor(private todoService: TodoService) { }
 
@@ -26,11 +27,17 @@ export class TodoItemComponent{
     this.todo.edit = false;
     if (newText) {
       this.todoService.changeTodo(this.todo.id, newText);
+      this.todoTextStyle = 'notDone';
     }
 
   }
 
   public doToDo(): void {
     this.todoService.changeDone(this.todo.id, !this.todo.done);
+    if (this.todo.done) {
+      this.todoTextStyle = 'done';
+    } else {
+      this.todoTextStyle = 'notDone';
+    }
   }
 }
