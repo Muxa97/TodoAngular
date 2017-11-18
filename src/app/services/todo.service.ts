@@ -39,6 +39,9 @@ export class TodoService {
     this.nextId++;
     this.saveTodos();
     this.totalPages = Math.floor(this.todos.length / 5) + 1;
+    if (this.todos.length % 5 === 0 && this.todos.length !== 0) {
+      this.totalPages--;
+    }
   }
 
   public getTodos(currentPage: number): TodoModel[] {
@@ -56,6 +59,9 @@ export class TodoService {
     this.todos = this.todos.filter((todo) => todo.id !== id);
     this.saveTodos();
     this.totalPages = Math.floor(this.todos.length / 5) + 1;
+    if (this.todos.length % 5 === 0 && this.todos.length !== 0) {
+      this.totalPages--;
+    }
   }
 
   public changeTodo(id: number, text: string): void {

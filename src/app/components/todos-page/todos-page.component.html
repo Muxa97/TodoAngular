@@ -1,5 +1,9 @@
 
-<div class="pageNumber">{{currentPage}}/{{this.todoService.totalPages}}</div>
+<div class="pageNumber">
+  Pages: {{currentPage}}/{{this.todoService.totalPages}}
+  <br/>
+  Tasks: {{this.todoService.todos.length}}
+</div>
 <div class="todosPage-wrapper">
   <div>
     <button mat-button (click)="prevPage()">←</button>
