@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TodoModel } from '../../models/todo.model';
 import { TodoService } from '../../services/todo.service';
 
@@ -7,12 +7,21 @@ import { TodoService } from '../../services/todo.service';
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.css']
 })
-export class TodoItemComponent {
+export class TodoItemComponent implements OnInit{
 
   @Input()
   public todo: TodoModel;
   public todoTextStyle = 'notDone';
   public todoText = '';
+
+  ngOnInit() {
+    if (this.todo.done) {
+      this.todoService.todosDone++;
+      this.todoTextStyle = 'done';
+    } else {
+      this.todoTextStyle = 'notDone';
+    }
+  }
 
   constructor(private todoService: TodoService) { }
 

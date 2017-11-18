@@ -7,6 +7,7 @@ export class TodoService {
   public todos: TodoModel[];
   public nextId: number;
   public totalPages: number;
+  public todosDone = 0;
 
   constructor() {
     let nextId = localStorage.getItem('nextId') || '0';
@@ -56,6 +57,9 @@ export class TodoService {
   }
 
   public removeTodo(id: number): void {
+    if (this.todos.filter((todo) => todo.id === id)[0].done) {
+      this.todosDone--;
+    }
     this.todos = this.todos.filter((todo) => todo.id !== id);
     this.saveTodos();
     this.totalPages = Math.floor(this.todos.length / 5) + 1;
@@ -66,12 +70,16 @@ export class TodoService {
 
   public changeTodo(id: number, text: string): void {
     this.todos.filter((todo) => todo.id === id)[0].text = text;
+    if (this.todos.filter((todo) => todo.id === id)[0].done) {
+      this.todosDone--;
+    }
     this.todos.filter((todo) => todo.id === id)[0].done = false;
     this.saveTodos();
   }
 
   public changeDone(id: number, done: boolean): void {
     this.todos.filter((todo) => todo.id === id)[0].done = done;
+    this.todos.filter((todo) => todo.id === id)[0].done ? this.todosDone++ : this.todosDone--;
     this.saveTodos();
   }
 
@@ -83,7 +91,7 @@ export class TodoService {
   }
 
   public changeOrder(todo: TodoModel, offset: number): void {
-    let i = this.todos.indexOf(todo);
+    const i = this.todos.indexOf(todo);
     if (i + offset >= 0 && i + offset < this.todos.length) {
       this.todos[i] = this.todos[i + offset];
       this.todos[i + offset] = todo;
