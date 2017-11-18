@@ -11,6 +11,11 @@
     <button mat-raised-button class="editTodo" (click)="editTodo()">Edit</button>
   </div>
 
+  <div class="order-buttons" *ngIf="!todo.edit">
+    <button mat-raised-button class="up-button" (click)="moveup()">↑</button>
+    <button mat-raised-button class="down-button" (click)="movedown()">↓</button>
+  </div>
+
   <div class="todoEditWrapper" *ngIf="todo.edit">
       <mat-form-field>
          <input matInput placeholder="{{todo.text}}" [(ngModel)]="todoText" value={{todoText}} (keyup.enter)="changeTodo(todoText)"/>

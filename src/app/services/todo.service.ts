@@ -42,11 +42,13 @@ export class TodoService {
   }
 
   public getTodos(currentPage: number): TodoModel[] {
+    this.todos.reverse();
     let todosPage: TodoModel[];
     todosPage = [];
     for (let i = 0; i < 5 && (currentPage - 1) * 5 + i < this.todos.length; i++) {
       todosPage.push(this.todos[(currentPage - 1) * 5 + i]);
     }
+    this.todos.reverse();
     return todosPage;
   }
 
@@ -71,6 +73,15 @@ export class TodoService {
     this.todos = [];
     this.nextId = 0;
     this.saveTodos();
-    this.totalPages = Math.floor(this.todos.length / 5) + 1;
+    this.totalPages = 1;
+  }
+
+  public changeOrder(todo: TodoModel, offset: number): void {
+    let i = this.todos.indexOf(todo);
+    if (i + offset >= 0 && i + offset < this.todos.length) {
+      this.todos[i] = this.todos[i + offset];
+      this.todos[i + offset] = todo;
+      this.saveTodos();
+    }
   }
 }

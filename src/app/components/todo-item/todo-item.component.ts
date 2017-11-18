@@ -12,6 +12,7 @@ export class TodoItemComponent {
   @Input()
   public todo: TodoModel;
   public todoTextStyle = 'notDone';
+  public todoText = '';
 
   constructor(private todoService: TodoService) { }
 
@@ -28,6 +29,7 @@ export class TodoItemComponent {
     if (newText) {
       this.todoService.changeTodo(this.todo.id, newText);
       this.todoTextStyle = 'notDone';
+      this.todoText = '';
     }
 
   }
@@ -39,5 +41,13 @@ export class TodoItemComponent {
     } else {
       this.todoTextStyle = 'notDone';
     }
+  }
+
+  public moveup(): void {
+    this.todoService.changeOrder(this.todo, 1);
+  }
+
+  public movedown(): void {
+    this.todoService.changeOrder(this.todo, -1);
   }
 }

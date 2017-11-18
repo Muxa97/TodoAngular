@@ -43,3 +43,19 @@
   margin: auto;
   width: auto;
 }
+
+.order-buttons {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.up-button, .down-button {
+  display: block;
+  margin: 2px;
+  padding: 0;
+  min-width: 0;
+  width: 20px;
+  text-align: center;
+  font-size: 1.7em;
+}
