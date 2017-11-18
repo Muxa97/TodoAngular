@@ -88,6 +88,7 @@ export class TodoService {
     this.nextId = 0;
     this.saveTodos();
     this.totalPages = 1;
+    this.todosDone = 0;
   }
 
   public changeOrder(todo: TodoModel, offset: number): void {
